@@ -55,3 +55,15 @@ exports.getUserFolders = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch folders" });
   }
 };
+
+exports.getFolderMetadata = async (req, res) => {
+  const slug = req.params.slug;
+  try {
+    const folder = await Folder.findOne({ slug }).select("name is_public");
+    if (!folder) return res.status(404).json({ error: "Folder not found" });
+
+    res.json({ name: folder.name, is_public: folder.is_public });
+  } catch (err) {
+    res.status(500).json({ error: "Error fetching folder metadata" });
+  }
+};
