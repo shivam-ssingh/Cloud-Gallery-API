@@ -5,7 +5,7 @@ require("dotenv").config();
 
 app.use(
   cors({
-    origin: "https://onrender.com",
+    origin: "https://cloud-gallery-ui.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   })
 );
